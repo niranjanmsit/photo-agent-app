@@ -4,7 +4,7 @@ from google.adk.agents import LlmAgent
 from google.adk.tools.mcp_tool import McpToolset
 from google.adk.tools.mcp_tool.mcp_session_manager import StdioConnectionParams
 from mcp import StdioServerParameters
-
+from dotenv import load_dotenv
 # It's good practice to define paths dynamically if possible,
 # or ensure the user understands the need for an ABSOLUTE path.
 # For this example, we'll construct a path relative to this file,
@@ -13,6 +13,10 @@ from mcp import StdioServerParameters
 TARGET_FOLDER_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "/home/nbasak/projects/photo-agent-app")
 # Ensure TARGET_FOLDER_PATH is an absolute path for the MCP server.
 # If you created ./adk_agent_samples/mcp_agent/your_folder,
+load_dotenv()
+
+google_maps_api_key = os.environ.get("GOOGLE_MAPS_API_KEY")
+
 
 root_agent = LlmAgent(
     model='gemini-2.0-flash',
@@ -40,3 +44,4 @@ root_agent = LlmAgent(
         )
     ],
 )
+
